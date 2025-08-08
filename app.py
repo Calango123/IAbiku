@@ -2,9 +2,9 @@ from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS
 import google.generativeai as genai
 from dotenv import load_dotenv
+import logging
 import os
 import re
-import logging
 
 app = Flask(__name__)
 CORS(app)
@@ -12,6 +12,7 @@ CORS(app)
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+# Configuração do Gemini AI
 load_dotenv()
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 model = genai.GenerativeModel("gemini-2.0-flash")
@@ -41,7 +42,6 @@ PROMPT_IA = (
 
 def formatar_resposta(texto):
     """Formata a resposta da IA para remover markdown desnecessário"""
-    # Remove negrito e itálico, substitui listas numeradas por emojis
     texto = re.sub(r"\*\*(.*?)\*\*", r"\1", texto)
     texto = re.sub(r"^\s*\d+\.\s*", "👉 ", texto, flags=re.MULTILINE)
     texto = texto.replace("*", "")
@@ -63,7 +63,6 @@ def pagina_ia():
 def pagina_chat():
     return render_template('chat.html', title='Chat IA')
 
-# API endpoints
 @app.route('/api/chat', methods=['POST'])
 def consulta_ia():
     try:
@@ -81,7 +80,6 @@ def consulta_ia():
         
         resposta_bruta = chat.send_message(pergunta).text
         
-        # Tratamento de respostas vazias ou genéricas da IA
         if not resposta_bruta or "não há dados suficientes" in resposta_bruta.lower() or "não consigo" in resposta_bruta.lower():
             resposta_formatada = "Desculpe, não consegui obter uma previsão detalhada para esta localização. Por favor, tente uma localização mais específica ou verifique a ortografia."
         else:
@@ -98,8 +96,5 @@ def consulta_ia():
 def inject_global_vars():
     return {
         'site_name': 'Drain Water',
-        'current_year': 2025 # Atualizado para o ano corrente
+        'current_year': 2025
     }
-
-if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
