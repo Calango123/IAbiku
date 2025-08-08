@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+
+{% block title %}Chat IA{% endblock %}
+
+{% block content %}
+<section class="py-3 bg-light rounded shadow-sm mb-4 text-center">
+    <div class="container">
+        <h1 class="display-5 fw-bold text-primary">Fale com o IAbiku!</h1>
+        <p class="lead text-muted">Fique sabendo sobre os próximos 7 dias no local desejado.</p>
+    </div>
+</section>
+
+<section class="chat-section">
+    <div class="container d-flex justify-content-center">
+        <div class="card chat-card shadow-lg border-0">
+            <div class="card-body p-4 d-flex flex-column">
+                <div id="chat-box" class="chat-box mb-3 p-3 border rounded overflow-auto">
+                    {# Mensagem inicial da IA - ESSENCIAL que siga a estrutura com avatar para o CSS funcionar #}
+                    <div class="ia-message-container">
+                        <img src="{{ url_for('static', filename='images/ia_avatar.png') }}" alt="Avatar da IA" class="ia-avatar">
+                        <div class="message ia-message">
+                            Olá! Eu sou o IAbiku, assistente de previsões de alagamentos. Qual região vamos consultar?
+                        </div>
+                    </div>
+                </div>
+                <form id="chat-form" class="d-flex align-items-center">
+                    <input type="text" id="user-input" class="form-control me-2" placeholder="Coloque uma localização. (Exemplo: São paulo, Mogi das cruzes)" autocomplete="off" required />
+                    <button type="submit" class="btn btn-primary px-4">Enviar</button>
+                </form>
+                <div id="loading-indicator" class="loading-indicator text-center mt-3" style="display: none;">
+                    <div class="spinner-grow text-primary" role="status">
+                        <span class="visually-hidden">Carregando...</span>
+                    </div>
+                    <div class="spinner-grow text-secondary" role="status">
+                        <span class="visually-hidden">Carregando...</span>
+                    </div>
+                    <div class="spinner-grow text-success" role="status">
+                        <span class="visually-hidden">Carregando...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts_extra %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('chat-form');
+        const input = document.getElementById('user-input');
+        const chatBox = document.getElementById('chat-box');
+        const loadingIndicator = document.getElementById('loading-indicator');
+        const sendButton = form.querySelector('button[type="submit"]');
+
+        function addMessage(text, senderClass) {
+            // Nenhuma interação com localStorage aqui para manter o histórico temporário.
+
+            if (senderClass === 'user-message') {
+                const div = document.createElement('div');
+                div.classList.add('message', senderClass, 'mb-2'); // Adiciona as classes para estilo e alinhamento
+                div.innerHTML = text.replace(/\n/g, '<br>'); // Substitui quebras de linha por <br>
+                chatBox.appendChild(div);
+            } else { // 'ia-message' ou 'error-message'
+                const containerDiv = document.createElement('div');
+                containerDiv.classList.add('ia-message-container'); // Container para alinhamento à esquerda e avatar
+
+                const avatarImg = document.createElement('img');
+                avatarImg.src = "{{ url_for('static', filename='images/ia_avatar.png') }}"; // Caminho do avatar
+                avatarImg.alt = "Avatar da IA";
+                avatarImg.classList.add('ia-avatar'); // Classe para estilizar o avatar (tamanho, redondo)
+                containerDiv.appendChild(avatarImg);
+
+                const messageDiv = document.createElement('div');
+                messageDiv.classList.add('message', senderClass, 'mb-2'); // Classe para o balão da mensagem da IA
+                messageDiv.innerHTML = text.replace(/\n/g, '<br>');
+                containerDiv.appendChild(messageDiv);
+
+                chatBox.appendChild(containerDiv);
+            }
+
+            chatBox.scrollTop = chatBox.scrollHeight; // Rola para o final do chat
+        }
+
+        // loadChatHistory e interações com localStorage foram removidas.
+
+        function showTypingIndicator() {
+            const typingContainer = document.createElement('div');
+            typingContainer.classList.add('ia-message-container'); // Reutiliza o container para o avatar e alinhamento
+
+            const avatarImg = document.createElement('img');
+            avatarImg.src = "{{ url_for('static', filename='images/ia_avatar.png') }}";
+            avatarImg.alt = "Avatar da IA";
+            avatarImg.classList.add('ia-avatar');
+            typingContainer.appendChild(avatarImg);
+
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'typing-indicator ia-message'; // Adiciona classes para estilo do balão de typing
+            typingDiv.id = 'typing-indicator'; // ID para remoção
+            typingDiv.innerHTML = `
+                <span class="typing-dot"></span>
+                <span class="typing-dot"></span>
+                <span class="typing-dot"></span>
+            `;
+            typingContainer.appendChild(typingDiv);
+            chatBox.appendChild(typingContainer);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        function hideTypingIndicator() {
+            const typingDiv = document.getElementById('typing-indicator');
+            if (typingDiv && typingDiv.parentElement) {
+                typingDiv.parentElement.remove();
+            }
+        }
+
+        // Não chamamos loadChatHistory, então o chat sempre começará com a mensagem inicial no HTML.
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const userText = input.value.trim();
+            if (!userText) return;
+
+            addMessage(userText, 'user-message');
+            input.value = '';
+            input.disabled = true;
+            sendButton.disabled = true;
+            showTypingIndicator();
+
+            try {
+                const res = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({local: userText})
+                });
+                const data = await res.json();
+
+                hideTypingIndicator();
+
+                let botResponse;
+                if(data.error){
+                    botResponse = '🤖 Ocorreu um erro: ' + data.error;
+                    addMessage(botResponse, 'ia-message error-message');
+                } else {
+                    botResponse = data.resposta;
+                    addMessage(botResponse, 'ia-message');
+                }
+            } catch (err) {
+                console.error('Erro na comunicação:', err);
+                hideTypingIndicator();
+                const errorMessage = '🤖 Erro na comunicação com o servidor. Verifique sua conexão.';
+                addMessage(errorMessage, 'ia-message error-message');
+            } finally {
+                input.disabled = false;
+                sendButton.disabled = false;
+                input.focus();
+            }
+        });
+    });
+</script>
+{% endblock %}

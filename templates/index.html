@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block title %}Início{% endblock %}
+
+{% block content %}
+<header class="py-5 bg-primary text-white text-center rounded-bottom">
+    <div class="container">
+        <h1 class="display-4 fw-bold mb-3">Drain Water</h1>
+        <p class="lead mb-4">Uma solução inovadora para previsões de alagamentos e riscos.</p>
+        
+        <a href="/chat" class="btn btn-light btn-lg px-5 shadow-sm">
+            <i class="bi bi-chat-dots-fill me-2"></i> Fale com o IAbiku!
+        </a>
+    </div>
+</header>
+
+<section class="container my-5 text-center">
+    <h2 class="fw-bold text-dark mb-4">Como Funciona?</h2>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col">
+            <div class="card h-100 p-4 shadow-sm border-0">
+                <div class="card-body">
+                    <i class="bi bi-geo-alt-fill text-primary display-4 mb-3"></i>
+                    <h3 class="h5 fw-bold">Diga sua localização</h3>
+                    <p class="text-muted">Informe ao IAbiku onde você está preocupado com alagamentos.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100 p-4 shadow-sm border-0">
+                <div class="card-body">
+                    <i class="bi bi-cpu-fill text-primary display-4 mb-3"></i>
+                    <h3 class="h5 fw-bold">IAbiku em ação!</h3>
+                    <p class="text-muted">O grande IAbiku analisa dados climáticos e geográficos.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100 p-4 shadow-sm border-0">
+                <div class="card-body">
+                    <i class="bi bi-bell-fill text-primary display-4 mb-3"></i>
+                    <h3 class="h5 fw-bold">Previsão e Segurança</h3>
+                    <p class="text-muted">Receba previsões detalhadas para os próximos 7 dias.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{# Nova Seção 1: Por que fizemos este projeto? #}
+<section class="bg-light py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6 text-center text-md-start mb-4 mb-md-0">
+                <h2 class="display-5 fw-bold text-primary mb-3">Nossa missão: Ajudar a prevenir alagamentos</h2>
+                <p class="lead text-muted">
+                    No Brasil existem diversos casos sobre alagamentos, uma realidade bem preocupante. Diante disso criamos o Drain Water e o IAbiku com o objetivo de oferecer uma ferramenta acessível e interativa para prever áreas de risco, podendo proteger vidas e estabelecimentos.
+                </p>
+                <p class="text-muted">
+                    Nosso projeto é uma das formas de transformar dados complexos em algo mais discontraido para compreender melhor as informações e ficar protegido!
+            </div>
+            <div class="col-md-6">
+                {# Você pode adicionar uma imagem ilustrativa aqui, se tiver #}
+                <img src="{{ url_for('static', filename='images/missao_alagamento.png') }}" alt="Pessoas protegidas de alagamento" class="img-fluid rounded shadow-sm">
+            </div>
+        </div>
+    </div>
+</section>
+
+{# Nova Seção 2: Conheça Nossa Equipe #}
+<section class="container my-5 text-center">
+    <h2 class="fw-bold text-dark mb-4">E quem somos nós?</h2>
+    <div class="card p-4 shadow-lg border-0 mx-auto" style="max-width: 800px;">
+        <div class="card-body">
+            <h3 class="h4 fw-bold text-primary mb-3">Conheça a equipe por trás das telas</h3>
+            <p class="text-muted mb-4">
+                Somos um grupo adoradores de tecnologia e uma forma de transformar coisas complicadas em simples, juntando todas nossas forças para desenvolver soluções que podem mudar vidas de pessoas. Cada um de nossos membros tem sua especialidade para fazer o Drain Water uma realidade!
+            </p>
+            <a href="/equipe" class="btn btn-outline-primary btn-lg px-4">
+                <i class="bi bi-people-fill me-2"></i> Veja Nossa Equipe Completa
+            </a>
+        </div>
+    </div>
+</section>
+
+{# Nova Seção 3: Descubra o Poder da IA #}
+<section class="bg-primary text-white py-5">
+    <div class="container text-center">
+        <h2 class="fw-bold mb-4">Mas como o IAbiku ajuda na prevenção? </h2>
+        <div class="card p-4 shadow-lg border-0 mx-auto text-dark" style="max-width: 800px;">
+            <div class="card-body">
+                <h3 class="h4 fw-bold text-primary mb-3">Inteligência artificial feito para sua segurança.</h3>
+                <p class="text-muted mb-4">
+                    O nosso amigo IAbiku coleta e processa vários dados climáticos e geográficos, analisando padrões históricos e atuais para fazer uma boa previsão de alagamentos mais precisa! É a tecnologia te deixando mais tranquilo.
+                </p>
+                <a href="/ia" class="btn btn-outline-dark btn-lg px-4">
+                    <i class="bi bi-robot me-2"></i> Veja mais sobre IAbiku
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

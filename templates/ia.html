@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}Como funciona o IAbiku{% endblock %}
+
+{% block content %}
+<section class="py-5 bg-light rounded shadow-sm mb-4 text-center">
+    <div class="container">
+        <h1 class="display-4 fw-bold text-primary mb-3">
+            <img src="{{ url_for('static', filename='images/dripdrainwater.png') }}" alt="Logo IAbiku" class="me-2 align-middle" style="height: 150px;">
+            Conheça o IAbiku! Nosso especialista em alagamentos.
+        </h1>
+        <p class="lead text-muted">Saiba mais sobre nossa IA que ajuda com os alagamentos.</p>
+        <p class="mb-4">Para testar e conversar com o IAbiku:</p>
+        <a href="/chat" class="btn btn-primary btn-lg px-5 shadow-sm">
+            Fale com o IAbiku!
+        </a>
+    </div>
+</section>
+
+<section class="container my-5 text-center">
+    <h2 class="fw-bold text-dark mb-4">Como funciona isso tudo?</h2>
+    <p class="lead text-muted mb-4">
+        Nossa IA, chamada IAbiku, utiliza um prompt para analisar os próximos 7 dias na região onde o usuário
+        pergunta para ele e ele dá uma resposta direta!
+    </p>
+    <p class="text-muted mb-3">Ele analisa coisas como:</p>
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 justify-content-center">
+        <div class="col">
+            <div class="card h-100 p-3 shadow-sm border-0 team-member-card">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-primary"><i class="bi bi-cloud-rain-fill me-2"></i> Histórico de Chuvas</h5>
+                    <p class="card-text text-muted">Verifica o histórico de chuvas e enchentes na área.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100 p-3 shadow-sm border-0 team-member-card">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-primary"><i class="bi bi-terrain-fill me-2"></i> Topografia Local</h5>
+                    <p class="card-text text-muted">Analisa a topografia do local, áreas baixas, etc.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100 p-3 shadow-sm border-0 team-member-card">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-primary"><i class="bi bi-water me-2"></i> Proximidade de Rios, lagos, entre outros</h5>
+                    <p class="card-text text-muted">Considera se o local é perto de rios, lagos, etc.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100 p-3 shadow-sm border-0 team-member-card">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-primary"><i class="bi bi-calendar-event-fill me-2"></i> Época do Ano</h5>
+                    <p class="card-text text-muted">Leva em conta a época do ano e padrões climáticos.</p>
+                </div>
+            </div>
+        </div>
+        {# Você pode adicionar mais tópicos aqui, se a IA analisar outros fatores #}
+    </div>
+
+    <p class="text-muted mt-5">Queremos deixar todos mais seguros!</p>
+</section>
+{% endblock %}

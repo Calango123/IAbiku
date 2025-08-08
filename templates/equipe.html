@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block title %}Equipe{% endblock %}
+
+{% block content %}
+<section class="py-5 bg-light rounded shadow-sm mb-4 text-center">
+    <div class="container">
+        <h1 class="display-4 fw-bold text-primary mb-3">Conheça Nossa Equipe</h1> {# Título mais profissional #}
+        <p class="lead text-muted">A mente e a dedicação por trás da Drain Water!</p> {# Subtítulo mais elegante #}
+    </div>
+</section>
+
+<div class="container my-5">
+    {# Usamos g-4 para um bom espaçamento entre os cards #}
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 justify-content-center"> 
+        {# Card para Alexandre Bernardo #}
+        <div class="col">
+            <div class="card h-100 text-center p-3 team-member-card">
+                <img src="{{ url_for('static', filename='images/alexandre.jpeg') }}" class="card-img-top mx-auto rounded-circle mb-3 team-avatar" alt="Foto de Alexandre Bernardo"> 
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <div>
+                        <h5 class="card-title fw-bold text-dark">Alexandre Bernardo</h5>
+                        <p class="card-text text-muted mb-2 small">O faz tudo</p>
+                        <p class="card-text text-dark fst-italic">"Ajudo todos um pouco!"</p>
+                    </div>
+                    {# Links sociais removidos #}
+                </div>
+            </div>
+        </div>
+
+        {# Card para Angelo Toloto #}
+        <div class="col">
+            <div class="card h-100 text-center p-3 team-member-card">
+                <img src="{{ url_for('static', filename='images/angelo.jpeg') }}" class="card-img-top mx-auto rounded-circle mb-3 team-avatar" alt="Foto de Angelo Toloto">
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <div>
+                        <h5 class="card-title fw-bold text-dark">Angelo Toloto</h5>
+                        <p class="card-text text-muted mb-2 small">designer</p>
+                        <p class="card-text text-dark fst-italic">"Deixei tudo mais bonito. Menos o Yabiku, ele já é perfeito."</p>
+                    </div>
+                    {# Links sociais removidos #}
+                </div>
+            </div>
+        </div>
+
+        {# Card para Eizo Felipe #}
+        <div class="col">
+            <div class="card h-100 text-center p-3 team-member-card">
+                <img src="{{ url_for('static', filename='images/eizo.jpeg') }}" class="card-img-top mx-auto rounded-circle mb-3 team-avatar" alt="Foto de Eizo Felipe">
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <div>
+                        <h5 class="card-title fw-bold text-dark">Eizo Felipe</h5>
+                        <p class="card-text text-muted mb-2 small">Dev do site e do IAbiku</p>
+                        <p class="card-text text-dark fst-italic">"é isso ai."</p>
+                    </div>
+                    {# Links sociais removidos #}
+                </div>
+            </div>
+        </div>
+
+        {# Card para Enzo Yabiku #}
+        <div class="col">
+            <div class="card h-100 text-center p-3 team-member-card">
+                <img src="{{ url_for('static', filename='images/enzo.jpeg') }}" class="card-img-top mx-auto rounded-circle mb-3 team-avatar" alt="Foto de Enzo Yabiku">
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <div>
+                        <h5 class="card-title fw-bold text-dark">Enzo Yabiku</h5>
+                        <p class="card-text text-muted mb-2 small">Especialista em chuva</p>
+                        <p class="card-text text-dark fst-italic">"sempre olho pro céu, se tem nuvem acho que vai chover."</p>
+                    </div>
+                    {# Links sociais removidos #}
+                </div>
+            </div>
+        </div>
+
+        {# Card para Filipe Oliveira #}
+        <div class="col">
+            <div class="card h-100 text-center p-3 team-member-card">
+                <img src="{{ url_for('static', filename='images/filipe.jpeg') }}" class="card-img-top mx-auto rounded-circle mb-3 team-avatar" alt="Foto de Filipe Oliveira">
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <div>
+                        <h5 class="card-title fw-bold text-dark">Filipe Oliveira</h5>
+                        <p class="card-text text-muted mb-2 small">O documentador</p>
+                        <p class="card-text text-dark fst-italic">"analiso tudo."</p>
+                    </div>
+                    {# Links sociais removidos #}
+                </div>
+            </div>
+        </div>
+
+    </div> {# Fechamento da div class="row" #}
+</div> {# Fechamento da div class="container" #}
+{% endblock %} {# Fechamento do bloco de conteúdo #}
