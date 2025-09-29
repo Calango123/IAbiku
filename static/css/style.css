@@ -72,6 +72,16 @@ h1, h2, h3, h4, h5, h6 {
 /* AJUSTES GERAIS DA HOMEPAGE (Mantendo os efeitos de elevação) */
 /* -------------------------------------------------------------------------- */
 
+/* FORÇA O FUNDO PRIMARY A USAR O ROXO DA VARIÁVEL */
+.bg-primary {
+    background-color: var(--bs-primary) !important;
+}
+/* FORÇA O FUNDO PRIMARY A USAR O ROXO DA VARIÁVEL */
+.btn-primary {
+    background-color: var(--bs-primary) !important;
+    border-color: var(--bs-primary) !important;
+}
+
 /* Cartões de Conteúdo (Geral) */
 .card {
     border-radius: 12px;
