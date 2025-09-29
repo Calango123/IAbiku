@@ -12,7 +12,6 @@ CORS(app)
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# Configuração do Gemini AI
 load_dotenv()
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 model = genai.GenerativeModel("gemini-2.0-flash")
@@ -95,6 +94,6 @@ def consulta_ia():
 @app.context_processor
 def inject_global_vars():
     return {
-        'site_name': 'Drain Water',
+        'site_name': 'Hydra',
         'current_year': 2025
     }
