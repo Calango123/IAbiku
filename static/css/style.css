@@ -41,11 +41,16 @@
   overflow: hidden;
 }
 .gradient-text {
-  background: linear-gradient(45deg, #fff, #00d4ff);
-  background-clip: text;            /* padrão */
-  -webkit-background-clip: text;    /* compatibilidade Chrome/Safari */
+  background: linear-gradient(45deg, #00d4ff, #0077ff);
+  background-clip: text;
+  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  color: transparent;               /* fallback */
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.navbar.scrolled {
+  background-color: #111 !important;
+  transition: background-color 0.3s ease;
 }
 
 .hero-section p {
