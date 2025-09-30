@@ -1,8 +1,75 @@
-body {
-    background-color: lightblue !important; /* Deve deixar o fundo da página azul claro */
-    color: navy !important; /* Deve deixar o texto principal azul escuro */
+/* ================== HERO ================== */
+.hero-section {
+  position: relative;
+  height: 100vh;
+  background: url("https://images.unsplash.com/photo-1521207418485-99c705420785?auto=format&fit=crop&w=1600&q=80")
+    center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-h1 {
-    color: red !important; /* Deve deixar o título H1 vermelho */
+.hero-section .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.hero-section .container {
+  position: relative;
+  z-index: 2;
+}
+
+/* Animações simples */
+.animate-title {
+  animation: fadeInDown 1s ease;
+}
+
+.animate-subtitle {
+  animation: fadeInUp 1.3s ease;
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Botão CTA */
+.btn-cta {
+  background: linear-gradient(45deg, #00d4ff, #0077ff);
+  border: none;
+  border-radius: 50px;
+  color: #fff;
+  transition: 0.3s;
+}
+.btn-cta:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+}
+
+/* ================== COMO FUNCIONA ================== */
+.step-card {
+  padding: 2rem;
+  border: none;
+  border-radius: 20px;
+  background: #f8f9fa;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+.step-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.icon-step {
+  font-size: 3rem;
+  color: #0077ff;
+  margin-bottom: 1rem;
 }
