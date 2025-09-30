@@ -1,54 +1,65 @@
-/* Hero com gradiente animado */
+/* HERO */
 .hero-section {
-  min-height: 90vh;
-  background: linear-gradient(135deg, #430ca8, #6a11cb, #2575fc);
-  background-size: 400% 400%;
-  animation: gradientBG 12s ease infinite;
+  min-height: 100vh;
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
+  background: linear-gradient(135deg, #430ca8, #2575fc, #00c6ff);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  overflow: hidden;
 }
-@keyframes gradientBG {
-  0% {background-position: 0% 50%;}
-  50% {background-position: 100% 50%;}
-  100% {background-position: 0% 50%;}
+.hero-section .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
 }
+.animate-title { animation: fadeUp 1.5s ease forwards; }
+.animate-subtitle { animation: fadeUp 2s ease forwards; }
+@keyframes fadeUp { from {opacity:0; transform:translateY(40px);} to {opacity:1; transform:translateY(0);} }
 
-/* Botão CTA */
+/* BOTÃO */
 .btn-cta {
-  background: #fff;
-  color: #430ca8;
-  font-weight: 600;
+  background: linear-gradient(45deg, #ff6ec4, #7873f5);
+  color: #fff;
   border-radius: 50px;
+  font-weight: 600;
   transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 .btn-cta:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+  transform: scale(1.08);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
 }
 
-/* Cards em estilo glassmorphism */
-.glass-card {
-  background: rgba(255, 255, 255, 0.85);
-  border-radius: 15px;
-  backdrop-filter: blur(12px);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+/* COMO FUNCIONA */
+.step-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  transition: all 0.4s ease;
+  cursor: pointer;
 }
-.glass-card:hover {
-  transform: translateY(-10px) scale(1.02);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+.step-card:hover {
+  transform: translateY(-12px) scale(1.05);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+.icon-step {
+  font-size: 3rem;
+  color: #2575fc;
+  margin-bottom: 15px;
+  transition: transform 0.3s ease;
+}
+.step-card:hover .icon-step { transform: rotate(-10deg) scale(1.2); }
+
+/* MISSÃO */
+.bg-light {
+  background: linear-gradient(135deg, #f9f9ff, #eef3ff);
 }
 
-/* Animações suaves */
-.animate-fade {opacity: 0; transform: translateY(20px); animation: fadeIn 1s forwards;}
-.animate-fade-delay {opacity: 0; transform: translateY(20px); animation: fadeIn 1s forwards 0.5s;}
-@keyframes fadeIn {to {opacity: 1; transform: translateY(0);}}
-
-/* Efeito "flutuar" em imagens */
-.animate-float {animation: float 6s ease-in-out infinite;}
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-12px); }
-  100% { transform: translateY(0px); }
+/* EQUIPE */
+.card {
+  border-radius: 20px;
 }
