@@ -3,114 +3,78 @@
 {% block title %}Início{% endblock %}
 
 {% block content %}
-<!-- 1. Hero Section (Banner Principal) -->
-<!-- Usando bg-primary (seu novo azul escuro) e py-6 (mais padding para impacto) -->
-<header class="py-6 bg-primary text-white text-center">
-    <div class="container">
-        <h1 class="display-4 fw-bolder mb-3">Hydra</h1>
-        <p class="lead mb-5">Uma solução inovadora de Inteligência Artificial para previsões de alagamentos e riscos em áreas urbanas.</p>
-        
-        <!-- Botão CTA (com efeito de elevação no hover via style.css) -->
-        <a href="/chat" class="btn btn-light btn-lg px-5 shadow-sm">
-            <i class="bi bi-chat-dots-fill me-2"></i> Fale com o IAbiku!
-        </a>
-    </div>
+<!-- Hero Section -->
+<header class="hero-section d-flex align-items-center text-center text-white">
+  <div class="container">
+    <h1 class="display-3 fw-bold mb-3 animate-fade">Hydra</h1>
+    <p class="lead mb-4 animate-fade-delay">
+      Inteligência Artificial para prever e prevenir alagamentos urbanos.
+    </p>
+    <a href="/chat" class="btn btn-cta btn-lg px-5">
+      <i class="bi bi-chat-dots-fill me-2"></i> Fale com o IAbiku!
+    </a>
+  </div>
 </header>
 
-<!-- 2. Como Funciona? (Cartões Dinâmicos e Flutuantes) -->
-<section class="container my-5 py-4 text-center">
-    <h2 class="fw-bold text-dark mb-5">Como Funciona?</h2>
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-        
-        <!-- Card 1: Localização -->
-        <div class="col">
-            <div class="card h-100 p-4 shadow-sm border-0">
-                <div class="card-body">
-                    <i class="bi bi-geo-alt-fill text-primary display-4 mb-3"></i>
-                    <h3 class="h5 fw-bold">Diga sua localização</h3>
-                    <p class="text-muted">Informe ao IAbiku onde você está preocupado com alagamentos. Use endereços ou coordenadas.</p>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Card 2: Processamento da IA -->
-        <div class="col">
-            <div class="card h-100 p-4 shadow-sm border-0">
-                <div class="card-body">
-                    <i class="bi bi-cpu-fill text-primary display-4 mb-3"></i>
-                    <h3 class="h5 fw-bold">IAbiku em ação!</h3>
-                    <p class="text-muted">O motor de IA analisa dados climáticos históricos e características geográficas da região em segundos.</p>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Card 3: Previsão e Recomendações -->
-        <div class="col">
-            <div class="card h-100 p-4 shadow-sm border-0">
-                <div class="card-body">
-                    <i class="bi bi-bell-fill text-primary display-4 mb-3"></i>
-                    <h3 class="h5 fw-bold">Previsão e Segurança</h3>
-                    <p class="text-muted">Receba previsões detalhadas (risco moderado, alto) e recomendações práticas para 7 dias.</p>
-                </div>
-            </div>
-        </div>
-        
+<!-- Como Funciona -->
+<section class="container my-5 py-5 text-center">
+  <h2 class="fw-bold mb-5">Como Funciona?</h2>
+  <div class="row g-4">
+    <div class="col-md-4">
+      <div class="card glass-card p-4">
+        <i class="bi bi-geo-alt-fill text-primary display-4 mb-3"></i>
+        <h3 class="h5 fw-bold">Diga sua localização</h3>
+        <p class="text-muted">Informe ao IAbiku sua área de interesse para monitoramento de riscos.</p>
+      </div>
     </div>
+    <div class="col-md-4">
+      <div class="card glass-card p-4">
+        <i class="bi bi-cpu-fill text-primary display-4 mb-3"></i>
+        <h3 class="h5 fw-bold">IAbiku em ação!</h3>
+        <p class="text-muted">A IA analisa dados climáticos e geográficos em segundos.</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card glass-card p-4">
+        <i class="bi bi-bell-fill text-primary display-4 mb-3"></i>
+        <h3 class="h5 fw-bold">Previsão e Segurança</h3>
+        <p class="text-muted">Receba relatórios detalhados e recomendações práticas para os próximos 7 dias.</p>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- 3. Nossa Missão (Bloco com Fundo Suave) -->
+<!-- Nossa Missão -->
 <section class="bg-light py-5">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-md-6 text-center text-md-start mb-4 mb-md-0">
-                <h2 class="display-5 fw-bold text-primary mb-3">Nossa missão: Prevenção e Segurança</h2>
-                <p class="lead text-secondary mb-4">
-                    No Brasil, alagamentos são uma preocupação constante. A Hydra nasceu para fornecer uma ferramenta acessível e interativa que prevê áreas de risco, ajudando a proteger vidas e estabelecimentos.
-                </p>
-                <p class="text-secondary">
-                    Nosso projeto transforma dados complexos em informações claras e simples para que você possa tomar decisões mais seguras e se manter protegido com antecedência.
-                </p>
-            </div>
-            <div class="col-md-6 missao-imagem">
-                <!-- Certifique-se de ter a imagem em static/images/missao_alagamento.png -->
-                <img src="{{ url_for('static', filename='images/missao_alagamento.png') }}" alt="Pessoas protegidas de alagamento" class="img-fluid rounded shadow-lg">
-            </div>
-        </div>
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-md-6">
+        <h2 class="display-5 fw-bold text-primary mb-3">Nossa missão: Prevenção e Segurança</h2>
+        <p class="lead text-secondary mb-3">
+          A Hydra nasceu para fornecer uma solução interativa que prevê áreas de risco e ajuda a salvar vidas.
+        </p>
+        <p class="text-secondary">
+          Transformamos dados complexos em informações acessíveis, para que você possa se proteger com antecedência.
+        </p>
+      </div>
+      <div class="col-md-6 text-center">
+        <img src="{{ url_for('static', filename='images/missao_alagamento.png') }}" alt="Missão Hydra" class="img-fluid rounded shadow-lg animate-float">
+      </div>
     </div>
+  </div>
 </section>
 
-<!-- 4. Seção Quem Somos (Chamada com Sombra Forte) -->
-<section class="container my-5 py-4 text-center">
-    <h2 class="fw-bold text-dark mb-4">E quem somos nós?</h2>
-    <div class="card p-4 shadow-lg border-0 mx-auto" style="max-width: 800px;">
-        <div class="card-body">
-            <h3 class="h4 fw-bold text-primary mb-3">Conheça a equipe por trás das telas</h3>
-            <p class="text-muted mb-4">
-                Somos um grupo apaixonado por tecnologia, focado em transformar complexidade em soluções simples e funcionais. Juntamos nossas especialidades para desenvolver o Hydra e o IAbiku, com o objetivo de gerar um impacto positivo na segurança urbana.
-            </p>
-            <a href="/equipe" class="btn btn-outline-primary btn-lg px-4">
-                <i class="bi bi-people-fill me-2"></i> Veja Nossa Equipe Completa
-            </a>
-        </div>
-    </div>
+<!-- Equipe -->
+<section class="container my-5 text-center">
+  <h2 class="fw-bold mb-4">E quem somos nós?</h2>
+  <div class="card shadow-lg p-5 border-0">
+    <h3 class="h4 fw-bold text-primary mb-3">Conheça a equipe por trás da Hydra</h3>
+    <p class="text-muted mb-4">
+      Somos apaixonados por tecnologia e segurança urbana. Criamos o Hydra para gerar impacto positivo na sociedade.
+    </p>
+    <a href="/equipe" class="btn btn-outline-primary btn-lg px-4">
+      <i class="bi bi-people-fill me-2"></i> Veja Nossa Equipe
+    </a>
+  </div>
 </section>
-
-<!-- 5. Seção IA em Poder (Fundo Primário) -->
-<section class="bg-primary text-white py-5">
-    <div class="container text-center">
-        <h2 class="fw-bold mb-4 text-white">Como o IAbiku ajuda na prevenção? </h2>
-        <div class="card p-4 shadow-lg border-0 mx-auto text-dark" style="max-width: 800px;">
-            <div class="card-body">
-                <h3 class="h4 fw-bold text-primary mb-3">Inteligência artificial para sua segurança.</h3>
-                <p class="text-secondary mb-4">
-                    O IAbiku utiliza o poder da IA do Google para coletar e processar dados climáticos e geográficos, analisando padrões históricos e atuais. Isso permite gerar uma previsão de alagamentos mais precisa. É a tecnologia garantindo sua tranquilidade!
-                </p>
-                <a href="/ia" class="btn btn-outline-dark btn-lg px-4">
-                    <i class="bi bi-robot me-2"></i> Veja mais sobre o IAbiku
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
-
 {% endblock %}
