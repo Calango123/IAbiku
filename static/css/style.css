@@ -1,65 +1,74 @@
+/* NAVBAR */
+.navbar {
+  transition: background 0.4s ease, box-shadow 0.4s ease;
+}
+.navbar.scrolled {
+  background: rgba(20, 20, 35, 0.95);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+.nav-link {
+  position: relative;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  left: 0;
+  bottom: -5px;
+  background: #6a11cb;
+  transition: width 0.3s ease;
+}
+.nav-link:hover::after {
+  width: 100%;
+}
+
 /* HERO */
 .hero-section {
-  min-height: 100vh;
-  position: relative;
+  min-height: 85vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #430ca8, #2575fc, #00c6ff);
-  background-size: 400% 400%;
+  text-align: center;
+  position: relative;
+  color: #fff;
+  background: linear-gradient(135deg, #1e1e2f, #2575fc, #6a11cb);
+  background-size: 200% 200%;
   animation: gradientBG 15s ease infinite;
+  border-radius: 0 0 60px 60px;
   overflow: hidden;
 }
-.hero-section .overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.4);
+.gradient-text {
+  background: linear-gradient(45deg, #fff, #00d4ff);
+  background-clip: text;            /* padrão */
+  -webkit-background-clip: text;    /* compatibilidade Chrome/Safari */
+  -webkit-text-fill-color: transparent;
+  color: transparent;               /* fallback */
 }
-.animate-title { animation: fadeUp 1.5s ease forwards; }
-.animate-subtitle { animation: fadeUp 2s ease forwards; }
-@keyframes fadeUp { from {opacity:0; transform:translateY(40px);} to {opacity:1; transform:translateY(0);} }
 
-/* BOTÃO */
+.hero-section p {
+  font-size: 1.3rem;
+  opacity: 0.9;
+}
 .btn-cta {
   background: linear-gradient(45deg, #ff6ec4, #7873f5);
   color: #fff;
-  border-radius: 50px;
-  font-weight: 600;
+  border-radius: 40px;
+  padding: 12px 30px;
+  font-weight: bold;
+  box-shadow: 0 0 20px rgba(120, 115, 245, 0.6);
   transition: all 0.3s ease;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 .btn-cta:hover {
-  transform: scale(1.08);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  transform: scale(1.1);
+  box-shadow: 0 0 35px rgba(255, 110, 196, 0.8);
 }
 
-/* COMO FUNCIONA */
-.step-card {
-  background: #fff;
-  border-radius: 20px;
-  padding: 2rem;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-  transition: all 0.4s ease;
-  cursor: pointer;
-}
-.step-card:hover {
-  transform: translateY(-12px) scale(1.05);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-}
-.icon-step {
-  font-size: 3rem;
-  color: #2575fc;
-  margin-bottom: 15px;
-  transition: transform 0.3s ease;
-}
-.step-card:hover .icon-step { transform: rotate(-10deg) scale(1.2); }
-
-/* MISSÃO */
-.bg-light {
-  background: linear-gradient(135deg, #f9f9ff, #eef3ff);
-}
-
-/* EQUIPE */
-.card {
-  border-radius: 20px;
+/* GRADIENTE ANIMADO */
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
