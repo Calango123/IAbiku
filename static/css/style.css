@@ -1,75 +1,312 @@
-/* ================== HERO ================== */
-.hero-section {
-  position: relative;
-  height: 100vh;
-  background: url("https://images.unsplash.com/photo-1521207418485-99c705420785?auto=format&fit=crop&w=1600&q=80")
-    center/cover no-repeat;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+:root {
+    /* Novos tons de roxo */
+    --bs-primary: #430ca8; /* Roxo vibrante (ou um tom de sua escolha, e.g., #8a2be2 para um roxo mais azulado) */
+    --bs-secondary: #6c757d; /* Pode manter cinza ou escolher um roxo mais claro/escuro para contraste */
+    --bs-info: #430ca8; /* Outro tom de roxo ou magenta para 'info' se quiser */
+
+    --bs-success: #28a745; /* Pode manter verde para sucesso */
+    --bs-warning: #ffc107; /* Pode manter amarelo para aviso */
+    --bs-danger: #dc3545; /* Pode manter vermelho para perigo */
+
+    --bs-light: #f8f9fa;
+    --bs-dark: #343a40;
+    --bs-white: #fff;
+
+    --font-poppins: 'Poppins', sans-serif;
+    --font-open-sans: 'Open Sans', sans-serif;
+
+    --chat-ia-background: #e9ecef; /* Fundo para mensagens da IA (cinza claro) */
+    --chat-user-background: var(--bs-primary); /* AGORA SERÁ ROXO! */
+    --chat-error-background: #f8d7da;
+    --chat-error-text: #721c24;
+
+    --shadow-sm: 0 .125rem .25rem rgba(0,0,0,.075);
+    --shadow-md: 0 .5rem 1rem rgba(0,0,0,.15);
+    --shadow-lg: 0 1rem 3rem rgba(0,0,0,.175);
 }
 
-.hero-section .overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.6);
+/* Base body e fontes */
+body {
+    font-family: var(--font-open-sans);
+    line-height: 1.6;
+    color: var(--bs-dark);
+    background-color: var(--bs-light);
 }
 
-.hero-section .container {
-  position: relative;
-  z-index: 2;
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-poppins);
+    font-weight: 600;
 }
 
-/* Animações simples */
-.animate-title {
-  animation: fadeInDown 1s ease;
+/* Ajustes no Navbar */
+/* A cor da linha de hover na navbar será roxa agora */
+.navbar .nav-link {
+    position: relative;
+    padding-bottom: 5px; /* Espaço para a linha de hover */
 }
 
-.animate-subtitle {
-  animation: fadeInUp 1.3s ease;
+.navbar .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: var(--bs-primary); /* Cor da linha - agora roxa! */
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
 }
 
-@keyframes fadeInDown {
-  from { opacity: 0; transform: translateY(-40px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
+.navbar .nav-link:hover::after,
+.navbar .nav-link.active::after {
+    width: 100%;
 }
 
-/* Botão CTA */
-.btn-cta {
-  background: linear-gradient(45deg, #00d4ff, #0077ff);
-  border: none;
-  border-radius: 50px;
-  color: #fff;
-  transition: 0.3s;
-}
-.btn-cta:hover {
-  opacity: 0.9;
-  transform: scale(1.05);
+.navbar-brand {
+    font-family: var(--font-poppins);
 }
 
-/* ================== COMO FUNCIONA ================== */
-.step-card {
-  padding: 2rem;
-  border: none;
-  border-radius: 20px;
-  background: #f8f9fa;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
-}
-.step-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+
+/* --- Estilos da Seção de Chat --- */
+.chat-section {
+    padding-top: 20px;
+    padding-bottom: 40px;
 }
 
-.icon-step {
-  font-size: 3rem;
-  color: #0077ff;
-  margin-bottom: 1rem;
+.chat-card {
+    width: 100%;
+    max-width: 768px; /* Largura máxima para o card do chat */
+    min-height: 500px; /* Reduzi um pouco de 600px, se achar que é demais */
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow-lg); /* Sombra mais pronunciada */
+}
+
+.chat-box {
+    flex-grow: 1; /* Ocupa o espaço restante no card */
+    min-height: 350px;
+    max-height: 500px; /* Este valor controla a altura máxima antes do scroll */
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: var(--bs-white);
+    border-color: var(--bs-light) !important;
+    overflow-y: auto; /* Adiciona scroll vertical se necessário */
+}
+
+/* Container para a mensagem e avatar da IA */
+/* Este flex container alinha o avatar e a mensagem da IA à esquerda */
+.ia-message-container {
+    display: flex; /* Para alinhar avatar e balão lado a lado */
+    align-items: flex-start; /* Alinha o topo do avatar com o topo do balão */
+    gap: 10px; /* Espaçamento entre o avatar e o balão */
+    align-self: flex-start; /* ALINHA O CONTAINER DA IA À ESQUERDA dentro do chat-box */
+    max-width: 80%; /* Limita a largura do container da IA para não ocupar 100% */
+}
+
+/* Avatar da IA */
+.ia-avatar {
+    width: 40px; /* Tamanho do avatar */
+    height: 40px;
+    border-radius: 50%; /* Torna o avatar redondo */
+    object-fit: cover; /* Garante que a imagem preencha o espaço sem distorcer */
+    flex-shrink: 0; /* Impede que o avatar encolha */
+    box-shadow: var(--shadow-sm);
+}
+
+/* Estilo base para todos os balões de mensagem */
+.message {
+    padding: 12px 18px;
+    border-radius: 20px;
+    line-height: 1.4;
+    word-wrap: break-word; /* Quebra palavras longas longas */
+    overflow-wrap: break-word; /* Suporte mais amplo para quebra de palavras */
+    box-shadow: var(--shadow-sm);
+    /* Removido flex-grow: 1; aqui para que a mensagem se ajuste ao conteúdo */
+    /* Adicionando max-width explícito para mensagens para evitar que ocupem a largura total */
+    max-width: 75%; /* Ajuste a largura máxima do balão (e.g., 75% ou 350px) */
+    /* Se quiser um max-width fixo em pixels, use: max-width: 350px; */
+}
+
+/* Estilo para as mensagens do usuário (direita) */
+.user-message {
+    align-self: flex-end; /* ALINHA A MENSAGEM DO USUÁRIO À DIREITA dentro do chat-box */
+    background-color: var(--chat-user-background); /* Cor de fundo roxa */
+    color: var(--bs-white); /* Texto branco */
+    border-bottom-right-radius: 5px; /* Ajuste para o "bico" do balão, se desejar */
+}
+
+/* Estilo para as mensagens da IA (esquerda) */
+.ia-message {
+    background-color: var(--chat-ia-background); /* Cor de fundo cinza claro ou roxo claro */
+    color: var(--bs-dark); /* Texto escuro */
+    border-bottom-left-radius: 5px; /* Ajuste para o "bico" do balão, se desejar */
+}
+
+/* Estilo para mensagens de erro */
+.error-message {
+    background-color: var(--chat-error-background);
+    color: var(--chat-error-text);
+    border: 1px solid var(--chat-error-text);
+}
+
+/* Ajustes para o input do chat */
+.form-control:focus {
+    border-color: var(--bs-primary); /* Agora a borda será roxa no foco */
+    box-shadow: 0 0 0 0.25rem rgba(111, 66, 193, .25); /* Sombra de foco roxa (RGB do --bs-primary) */
+}
+
+/* Loading Indicator (Spinner do Bootstrap) */
+.loading-indicator {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+/* Typing indicator para aparecer como balão de bot */
+/* Este é o estilo para os "três pontinhos" de digitação, que também usará o .ia-message-container */
+.typing-indicator {
+    display: flex; /* Para alinhar os pontos */
+    align-items: center; /* Alinha os pontos no centro vertical */
+    gap: 10px; /* Espaçamento entre os pontos */
+    padding: 12px 18px; /* Padding similar às mensagens */
+    border-radius: 20px;
+    background-color: var(--chat-ia-background);
+    color: var(--bs-dark);
+    border-bottom-left-radius: 5px;
+    box-shadow: var(--shadow-sm);
+    /* O alinhamento à esquerda é tratado pelo .ia-message-container pai */
+}
+.typing-indicator .typing-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--bs-secondary);
+    margin: 0 2px;
+    animation: typingAnimation 1.4s infinite ease-in-out;
+}
+.typing-dot:nth-child(1) { animation-delay: 0s; }
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+@keyframes typingAnimation {
+    0%, 60%, 100% { transform: translateY(0); }
+    30% { transform: translateY(-5px); }
+}
+
+/* Se quiser um fundo um pouco mais claro para o chat da IA que combine com o roxo */
+/* Já movido para cima, mas reforçando que está aqui */
+.chat-ia-background {
+    background-color: #f3f0ff; /* Um roxo bem clarinho para o fundo da IA */
+}
+
+
+/* --- Estilos para a Página da Equipe --- */
+
+/* Estilo para os cards de membro da equipe */
+.team-member-card {
+    border: none; /* Remover a borda padrão do Bootstrap */
+    border-radius: 15px; /* Bordas mais arredondadas */
+    box-shadow: var(--shadow-sm); /* Sombra sutil */
+    transition: all 0.3s ease-in-out; /* Transição suave para hover */
+    background-color: var(--bs-white); /* Fundo branco para os cards */
+}
+
+.team-member-card:hover {
+    transform: translateY(-8px); /* Efeito de "levantar" no hover */
+    box-shadow: var(--shadow-md) !important; /* Sombra mais pronunciada no hover */
+}
+
+/* Estilo para as fotos dos avatares da equipe */
+.team-avatar {
+    width: 150px; /* Tamanho do avatar */
+    height: 150px;
+    object-fit: cover; /* Garante que a imagem preencha o espaço sem distorcer */
+    border: 4px solid var(--bs-primary); /* Borda colorida ao redor do avatar (agora roxa!) */
+    box-shadow: var(--shadow-sm); /* Sombra no avatar */
+}
+
+/* Estilo para os links sociais */
+.social-links a {
+    color: var(--bs-secondary); /* Cor cinza para os ícones */
+    transition: color 0.2s ease; /* Transição suave para mudança de cor */
+}
+
+.social-links a:hover {
+    color: var(--bs-primary); /* Mudar para a cor primária (roxo) no hover */
+}
+
+/* Ajustes gerais de tipografia para títulos de destaque */
+h1.display-4 {
+    font-size: 3.5rem; /* Um pouco maior para um título de destaque */
+}
+
+p.lead {
+    font-size: 1.3rem; /* Texto principal um pouco maior */
+}
+
+/* Estilos para o footer (se você adicionou links com hover) */
+.text-muted-hover:hover {
+    color: var(--bs-primary) !important; /* Mudar a cor do link no hover para roxo */
+}
+
+
+/* Media Queries para Responsividade (geral) */
+@media (max-width: 992px) { /* Para telas médias e menores, ajuste colunas da equipe */
+    .row.row-cols-lg-3 .col {
+        flex: 0 0 50%; /* 2 colunas em telas médias */
+        max-width: 50%;
+    }
+}
+
+@media (max-width: 768px) {
+    .chat-card {
+        min-height: 500px;
+    }
+
+    .chat-box {
+        height: 350px;
+    }
+
+    .ia-message-container, .message {
+        max-width: 90%; /* Ajusta a largura máxima para telas menores */
+    }
+
+    .row.row-cols-md-2 .col { /* Garante 1 coluna em telas pequenas para a equipe */
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    /* Reduz o tamanho de títulos e parágrafos para telas menores */
+    h1.display-4 {
+        font-size: 2.5rem;
+    }
+    p.lead {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .chat-card {
+        border-radius: 0; /* Remove bordas arredondadas em telas muito pequenas */
+        box-shadow: none; /* Remove sombra em telas muito pequenas */
+    }
+    .chat-box {
+        border-radius: 0;
+    }
+    .form-control {
+        font-size: 0.9rem;
+    }
+    .btn {
+        font-size: 0.9rem;
+        padding: 0.7rem 1rem;
+    }
+    /* Adaptação para o cabeçalho azul na página inicial */
+    header.py-5 {
+        padding-top: 3rem !important;
+        padding-bottom: 3rem !important;
+    }
 }
