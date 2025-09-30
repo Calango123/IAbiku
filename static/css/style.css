@@ -1,79 +1,75 @@
-/* NAVBAR */
-.navbar {
-  transition: background 0.4s ease, box-shadow 0.4s ease;
-}
-.navbar.scrolled {
-  background: rgba(20, 20, 35, 0.95);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-}
-.nav-link {
-  position: relative;
-  font-weight: 500;
-  transition: color 0.3s ease;
-}
-.nav-link::after {
-  content: "";
-  position: absolute;
-  width: 0%;
-  height: 2px;
-  left: 0;
-  bottom: -5px;
-  background: #6a11cb;
-  transition: width 0.3s ease;
-}
-.nav-link:hover::after {
-  width: 100%;
-}
-
-/* HERO */
+/* ================== HERO ================== */
 .hero-section {
-  min-height: 85vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
   position: relative;
-  color: #fff;
-  background: linear-gradient(135deg, #1e1e2f, #2575fc, #6a11cb);
-  background-size: 200% 200%;
-  animation: gradientBG 15s ease infinite;
-  border-radius: 0 0 60px 60px;
-  overflow: hidden;
-}
-.gradient-text {
-  background: linear-gradient(45deg, #00d4ff, #0077ff);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-weight: 700;
-  letter-spacing: 1px;
-}
-.navbar.scrolled {
-  background-color: #111 !important;
-  transition: background-color 0.3s ease;
+  height: 100vh;
+  background: url("https://images.unsplash.com/photo-1521207418485-99c705420785?auto=format&fit=crop&w=1600&q=80")
+    center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.hero-section p {
-  font-size: 1.3rem;
-  opacity: 0.9;
+.hero-section .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
 }
+
+.hero-section .container {
+  position: relative;
+  z-index: 2;
+}
+
+/* Animações simples */
+.animate-title {
+  animation: fadeInDown 1s ease;
+}
+
+.animate-subtitle {
+  animation: fadeInUp 1.3s ease;
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Botão CTA */
 .btn-cta {
-  background: linear-gradient(45deg, #ff6ec4, #7873f5);
+  background: linear-gradient(45deg, #00d4ff, #0077ff);
+  border: none;
+  border-radius: 50px;
   color: #fff;
-  border-radius: 40px;
-  padding: 12px 30px;
-  font-weight: bold;
-  box-shadow: 0 0 20px rgba(120, 115, 245, 0.6);
-  transition: all 0.3s ease;
+  transition: 0.3s;
 }
 .btn-cta:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 35px rgba(255, 110, 196, 0.8);
+  opacity: 0.9;
+  transform: scale(1.05);
 }
 
-/* GRADIENTE ANIMADO */
-@keyframes gradientBG {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+/* ================== COMO FUNCIONA ================== */
+.step-card {
+  padding: 2rem;
+  border: none;
+  border-radius: 20px;
+  background: #f8f9fa;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+.step-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.icon-step {
+  font-size: 3rem;
+  color: #0077ff;
+  margin-bottom: 1rem;
 }
