@@ -95,6 +95,6 @@ def consulta_ia():
 @app.context_processor
 def inject_global_vars():
     return {
-        'site_name': 'Drain Water',
+        'site_name': 'IAbiku',
         'current_year': 2025
     }
