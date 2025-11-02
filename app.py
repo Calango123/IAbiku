@@ -70,7 +70,7 @@ def consulta_ia():
             return jsonify({'error': 'Localização não informada.'}), 400
         
         local = data['local'].strip()
-        if len(local) < 3:
+        if len(local) < 2:
             return jsonify({'error': 'Localização muito curta.'}), 400
             
         if local == "67":
