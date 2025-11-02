@@ -72,6 +72,9 @@ def consulta_ia():
         local = data['local'].strip()
         if len(local) < 3:
             return jsonify({'error': 'Localização muito curta.'}), 400
+            
+        if local == "67":
+            return jsonify({'resposta': 'six sevennn ⁶🤷⁷ 🙏🙏😭😭'})
 
         chat = model.start_chat()
         chat.send_message(PROMPT_IA)
